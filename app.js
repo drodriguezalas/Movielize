@@ -14,11 +14,11 @@ function splitAll(target)
     return target;
 }
 
-function storeAllInTree(arrayToStore, treeToBeUsed)
+function storeAllInTree(arrayToStore, movieValue, treeToBeUsed)
 {
     for(var i = 0; i < arrayToStore.length; i++)
     {
-        treeToBeUsed.store(arrayToStore[i], arrayToStore[i]);
+        treeToBeUsed.store(arrayToStore[i], movieValue);
     }
 }
 
@@ -81,26 +81,35 @@ jsonMovies.forEach(function (element)
 
     if(myMov.movieTitle)
     {
-        storeAllInTree(myMov.movieTitle, titleTree);
+        storeAllInTree(myMov.movieTitle, myMov, titleTree);
     }
     if(myMov.movieYear)
     {
-        yearTree.store(myMov.movieYear, myMov.movieYear);
+        yearTree.store(myMov.movieYear, myMov);
     }
     if(myMov.movieDirector)
     {
-        storeAllInTree(myMov.movieDirector, directorTree);
+        storeAllInTree(myMov.movieDirector, myMov, directorTree);
     }
     if(myMov.movieCast)
     {
-        storeAllInTree(myMov.movieCast, castTree);
+        storeAllInTree(myMov.movieCast, myMov, castTree);
     }
     if(myMov.movieGenre)
     {
-        storeAllInTree(myMov.movieGenre, genreTree);
+        storeAllInTree(myMov.movieGenre, myMov, genreTree);
     }
     if(myMov.movieNotes)
     {
-        storeAllInTree(myMov.movieNotes, notesTree);
+        storeAllInTree(myMov.movieNotes, myMov, notesTree);
     }
 });
+
+//HOW TO SEARCH FOR A WORD IN A TREE
+/*
+var gerardButlerMovies = castTree.fetchRange("Butler", "Butler");
+for(var i = 0; i < gerardButlerMovies.length; i++)
+{
+    console.log(gerardButlerMovies[i].movieCast);
+}
+*/
